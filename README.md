@@ -67,45 +67,37 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 12. set Routes (config/routes.rb)
 
   	Rails.application.routes.draw do
-
    		resources :people, except: [:show]
 
     	root to: "people#index"
-
   	end
 
 13. Next let's add in the controller code. Open up app/controllers/people_controller.rb and modify it so that it looks like the code listed below.(app/controllers/people_controller.rb:)
 
   	class PeopleController < ApplicationController
-
-      def index
-
+  	  def index
   	    @people = Person.all
   	  end
 
   	  def new
-
   	    @person = Person.new
   	  end
 
   	  def create
-
   	    @person = Person.new(person_params)
   	    if @person.save
   	      redirect_to people_path, notice: "The person has been created!" and return
   	    end
-
   	    render 'new'
   	  end
 
   	  def edit
-
   	    @person = Person.find(params[:id])
   	  end
 
   	  def update
-
   	    @person = Person.find(params[:id])
+
   	    if @person.update_attributes(person_params)
   	      redirect_to people_path, notice: "#{first_name} #{last_name} has been updated!" and return
   	    end
@@ -120,10 +112,9 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
   	end
 
   	private
-
   	  def person_params
-      	params.require(:person).permit(:first_name, :last_name, :email, :notes)
-    	end
+      		params.require(:person).permit(:first_name, :last_name, :email, :notes)
+    	  end
   	end
 
 	14. create the view (Now we are ready to craete view)
