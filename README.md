@@ -24,6 +24,7 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 4. Check mongodb start or not
 
   	http://localhost:27017/
+
   	(O/P : It looks like you are trying to access MongoDB over HTTP on the native driver port.)
 
     4.1 stop mongodb
@@ -49,12 +50,14 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 9. Generate mongodb config file
 
   	rails g mongoid:config
+
   	(Note : Just as when using a relational DB such as SQLite, Postgres, or MySQL, we need a configuration file. Mongoid installs a custom Rails generator for us)
 
 
 10. create the model (Now we are ready to create model)
 
   	rails g model person first_name last_name email notes
+
   	(Note :  Instead of inheriting from ActiveRecord::Base, the first line in the model, include Mongoid::Document, tells rails that we wish to use Mongoid and interact with MongoDB. The second, third, fourth, and fifth lines in the model all define the various fields. MongoDB does not use migrations, instead, the schema is defined in the model itself)
 
 11. create the controller (Now we are ready to craete controller) 
@@ -64,8 +67,11 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 12. set Routes (config/routes.rb)
 
   	Rails.application.routes.draw do
+
    		resources :people, except: [:show]
+
     	root to: "people#index"
+
   	end
 
 13. Next let's add in the controller code. Open up app/controllers/people_controller.rb and modify it so that it looks like the code listed below.(app/controllers/people_controller.rb:)
@@ -74,40 +80,31 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
   	  def index
   	    @people = Person.all
   	  end
-
   	  def new
   	    @person = Person.new
   	  end
-
   	  def create
   	    @person = Person.new(person_params)
-
   	    if @person.save
   	      redirect_to people_path, notice: "The person has been created!" and return
   	    end
   	    render 'new'
   	  end
-
   	  def edit
   	    @person = Person.find(params[:id])
   	  end
-
   	  def update
   	    @person = Person.find(params[:id])
-
   	    if @person.update_attributes(person_params)
   	      redirect_to people_path, notice: "#{first_name} #{last_name} has been updated!" and return
   	    end
-
   	    render 'edit'
   	  end
-
   	  def destroy
   	    @person = Person.find(params[:id])
   	    @person.destroy
   	    redirect_to people_path, notice: "#{first_name} #{last_name} has been deleted!" and return
   	end
-
   	private
   	  def person_params
       		params.require(:person).permit(:first_name, :last_name, :email, :notes)
@@ -120,19 +117,19 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
       	<!DOCTYPE html>
       	<html>
-      	<head>
-      	  <title>MongoDBExampleApp</title>
-      	  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' %>
-      	  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js' %>
-      	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-      	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-      	  <%= csrf_meta_tags %>
-      	</head>
-      	<body>
-      	  <div class="container">
-      	    <%= yield %>
-      	  </div>
-      	</body>
+      	  <head>
+      	   <title>MongoDBExampleApp</title>
+      	    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' %>
+      	     <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js' %>
+      	    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      	     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      	    <%= csrf_meta_tags %>
+      	  </head>
+      	  <body>
+      	    <div class="container">
+      	      <%= yield %>
+      	    </div>
+      	  </body>
       	</html>
 
     	14.2 Next up, let's create a file called _form.html.erb in the app/views/people folder. This file will store our form that will be used to both create an exist an existing person. Once you create the file, add in the code listed below.(app/views/people/_form.html.erb:)
