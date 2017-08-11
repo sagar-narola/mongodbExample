@@ -68,7 +68,6 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
   	Rails.application.routes.draw do
    		resources :people, except: [:show]
-
     	root to: "people#index"
   	end
 
@@ -85,7 +84,6 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
   	  def create
   	    @person = Person.new(person_params)
-
   	    if @person.save
   	      redirect_to people_path, notice: "The person has been created!" and return
   	    end
