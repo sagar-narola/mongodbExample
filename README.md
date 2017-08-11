@@ -68,8 +68,8 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
     ```
   	Rails.application.routes.draw do
-   	resources :people, except: [:show]
-    root to: "people#index"
+     	resources :people, except: [:show]
+      root to: "people#index"
   	end
     ```
 
