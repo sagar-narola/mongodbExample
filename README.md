@@ -167,71 +167,71 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
     	<% end %>
       ```
 
-	14.3 Next, let's open the new person view at app/views/people/new.html.erb and add in the code listed below. This will include the form we just created so that we can create a new person.(app/views/people/new.html.erb:)
+  	14.3 Next, let's open the new person view at app/views/people/new.html.erb and add in the code listed below. This will include the form we just created so that we can create a new person.(app/views/people/new.html.erb:)
 
-    ```
-   	 <h1>New Person</h1>
-  	<div class="well">
-  	  <%= render "form" %>
-  	</div>
-    ```
+      ```
+     	 <h1>New Person</h1>
+    	<div class="well">
+    	  <%= render "form" %>
+    	</div>
+      ```
 
-	14.4 Now, let's modify our edit person view and add in the form. Open up the edit person view and modify it so that it looks like the code listed below.(app/views/people/edit.html.erb:)
+  	14.4 Now, let's modify our edit person view and add in the form. Open up the edit person view and modify it so that it looks like the code listed below.(app/views/people/edit.html.erb:)
 
-    ```
-    <h1>Edit Person</h1>
-    <div class="well">
-      <%= render "form" %>
-    </div>
-    ```
+      ```
+      <h1>Edit Person</h1>
+      <div class="well">
+        <%= render "form" %>
+      </div>
+      ```
 
-	14.5 Now, let's create our index view. Open up the index view for our people controller at app/views/people/index.html.erb and modify it so that it looks like the code listed below.(app/views/people/index.html.erb:)
+  	14.5 Now, let's create our index view. Open up the index view for our people controller at app/views/people/index.html.erb and modify it so that it looks like the code listed below.(app/views/people/index.html.erb:)
 
-    ```
-  	<h1>People</h1>
-  	<div class="well">
-  	  <%= link_to "New Person", new_person_path, class: "btn btn-primary" %>
-  	</div>
+      ```
+    	<h1>People</h1>
+    	<div class="well">
+    	  <%= link_to "New Person", new_person_path, class: "btn btn-primary" %>
+    	</div>
 
-  	<% if flash[:notice] %>
-  	  <div class="alert alert-success"><%= flash[:notice] %></div>
-  	<% end %>
+    	<% if flash[:notice] %>
+    	  <div class="alert alert-success"><%= flash[:notice] %></div>
+    	<% end %>
 
-  	<table class="table table-bordered table-striped">
-  	  <thead>
-  	    <tr>
-  	      <th>First Name</th>
-  	      <th>Last Name</th>
-  	      <th>Email</th>
-  	      <th>Notes</th>
-  	      <th>&nbsp;</th>
-  	      <th>&nbsp;</th>
-  	    </tr>
-  	  </thead>
-  	  <tbody>
-  	    <% if @people.size == 0 %>
-  	      <tr>
-  	        <td colspan="6">No people found.</td>
-  	      </tr>
-  	    <% else %>
-  	      <% @people.each do |person| %>
-  	        <tr>
-  	          <td><%= person.first_name %></td>
-  	          <td><%= person.last_name %></td>
-  	          <td><%= person.email %></td>
-  	          <td><%= person.notes %></td>
-  	          <td>
-  	            <%= link_to "Edit", edit_person_path(person), class: "btn btn-default" %>
-  	          </td>
-  	          <td>
-  	            <%= button_to "Delete", person, method: :delete, data: { confirm: "Are you sure you wish to delete #{person.first_name} #{person.last_name}?" }, class: "btn btn-danger" %>
-  	          </td>
-  	        </tr>
-  	      <% end %>
-  	    <% end %>
-  	  </tbody>
-  	</table>
-    ```
+    	<table class="table table-bordered table-striped">
+    	  <thead>
+    	    <tr>
+    	      <th>First Name</th>
+    	      <th>Last Name</th>
+    	      <th>Email</th>
+    	      <th>Notes</th>
+    	      <th>&nbsp;</th>
+    	      <th>&nbsp;</th>
+    	    </tr>
+    	  </thead>
+    	  <tbody>
+    	    <% if @people.size == 0 %>
+    	      <tr>
+    	        <td colspan="6">No people found.</td>
+    	      </tr>
+    	    <% else %>
+    	      <% @people.each do |person| %>
+    	        <tr>
+    	          <td><%= person.first_name %></td>
+    	          <td><%= person.last_name %></td>
+    	          <td><%= person.email %></td>
+    	          <td><%= person.notes %></td>
+    	          <td>
+    	            <%= link_to "Edit", edit_person_path(person), class: "btn btn-default" %>
+    	          </td>
+    	          <td>
+    	            <%= button_to "Delete", person, method: :delete, data: { confirm: "Are you sure you wish to delete #{person.first_name} #{person.last_name}?" }, class: "btn btn-danger" %>
+    	          </td>
+    	        </tr>
+    	      <% end %>
+    	    <% end %>
+    	  </tbody>
+    	</table>
+      ```
 
 15. Great! Now if we start our Rails server using the rails scommand and navigate to our rails development site at https://localhost:3000 we will find that we have a fully simple, functioning app using MongoDB.
 
