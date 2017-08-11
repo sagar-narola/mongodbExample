@@ -69,7 +69,7 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
   	```Rails.application.routes.draw do
    		resources :people, except: [:show]
     	root to: "people#index"
-  	end```
+  	end
 
 13. Next let's add in the controller code. Open up app/controllers/people_controller.rb and modify it so that it looks like the code listed below.(app/controllers/people_controller.rb:)
 
