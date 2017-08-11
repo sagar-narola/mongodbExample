@@ -107,7 +107,6 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
   	  def destroy
   	    @person = Person.find(params[:id])
-
   	    @person.destroy
   	    redirect_to people_path, notice: "#{first_name} #{last_name} has been deleted!" and return
   	end
