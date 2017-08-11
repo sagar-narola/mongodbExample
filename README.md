@@ -74,7 +74,7 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
 13. Next let's add in the controller code. Open up app/controllers/people_controller.rb and modify it so that it looks like the code listed below.(app/controllers/people_controller.rb:)
 
-  	class PeopleController < ApplicationController
+  	`class PeopleController < ApplicationController
   	  def index
   	    @people = Person.all
   	  end
@@ -97,7 +97,6 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
   	  def update
   	    @person = Person.find(params[:id])
-
   	    if @person.update_attributes(person_params)
   	      redirect_to people_path, notice: "#{first_name} #{last_name} has been updated!" and return
   	    end
@@ -115,7 +114,7 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
   	  def person_params
       		params.require(:person).permit(:first_name, :last_name, :email, :notes)
     	  end
-  	end
+  	end`
 
 	14. create the view (Now we are ready to craete view)
 
