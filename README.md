@@ -110,13 +110,12 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
   	    @person.destroy
   	    redirect_to people_path, notice: "#{first_name} #{last_name} has been deleted!" and return
-  	  end
+  	end
 
   	private
-
   	  def person_params
       		params.require(:person).permit(:first_name, :last_name, :email, :notes)
-    	end
+    	  end
   	end
 
 	14. create the view (Now we are ready to craete view)
