@@ -66,15 +66,14 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
 12. set Routes (config/routes.rb)
 
-  	Rails.application.routes.draw do
+  	```Rails.application.routes.draw do
    		resources :people, except: [:show]
-
     	root to: "people#index"
-  	end
+  	end```
 
 13. Next let's add in the controller code. Open up app/controllers/people_controller.rb and modify it so that it looks like the code listed below.(app/controllers/people_controller.rb:)
 
-  	`class PeopleController < ApplicationController
+  	class PeopleController < ApplicationController
   	  def index
   	    @people = Person.all
   	  end
@@ -114,7 +113,7 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
   	  def person_params
       		params.require(:person).permit(:first_name, :last_name, :email, :notes)
     	  end
-  	end`
+  	end
 
 	14. create the view (Now we are ready to craete view)
 
