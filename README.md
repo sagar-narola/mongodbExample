@@ -157,10 +157,10 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
     	14.3 Next, let's open the new person view at app/views/people/new.html.erb and add in the code listed below. This will include the form we just created so that we can create a new person.(app/views/people/new.html.erb:)
 
-       	<h1>New Person</h1>
-      	<div class="well">
-      	  <%= render "form" %>
-      	</div>
+     	<h1>New Person</h1>
+    	<div class="well">
+    	  <%= render "form" %>
+    	</div>
 
     	14.4 Now, let's modify our edit person view and add in the form. Open up the edit person view and modify it so that it looks like the code listed below.(app/views/people/edit.html.erb:)
 
