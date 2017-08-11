@@ -68,7 +68,7 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
     ```
   	Rails.application.routes.draw do
-     	resources :people, except: [:show]
+     resources :people, except: [:show]
       root to: "people#index"
   	end
     ```
@@ -114,8 +114,8 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
   	private
 
       def person_params
-      		params.require(:person).permit(:first_name, :last_name, :email, :notes)
-    	end
+    	 params.require(:person).permit(:first_name, :last_name, :email, :notes)
+       end
   	end
     ```
 
@@ -123,6 +123,8 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
 
     	14.1 Before we get started on the views, let's add Bootstrap to the project to pretty things up a bit. Open up the app/views/layouts/application.html.erb file and modify it so that it looks like the code listed below.(app/views/layouts/application.html.erb:)
 
+
+        ```
       	<!DOCTYPE html>
       	<html>
       	<head>
@@ -139,9 +141,11 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
       	  </div>
       	</body>
       	</html>
+        ```
 
     	14.2 Next up, let's create a file called _form.html.erb in the app/views/people folder. This file will store our form that will be used to both create an exist an existing person. Once you create the file, add in the code listed below.(app/views/people/_form.html.erb:)
 
+        ```
       	<%= form_for @person do |f| %>
       	  <div class="form-group">
       	    <%= f.label :first_name %>
@@ -161,24 +165,28 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
       	  </div>
       	  <%= f.submit class: "btn btn-primary" %>
       	<% end %>
-
+        ```
 
     	14.3 Next, let's open the new person view at app/views/people/new.html.erb and add in the code listed below. This will include the form we just created so that we can create a new person.(app/views/people/new.html.erb:)
 
+      ```
        	<h1>New Person</h1>
       	<div class="well">
       	  <%= render "form" %>
       	</div>
-
+      ```
     	14.4 Now, let's modify our edit person view and add in the form. Open up the edit person view and modify it so that it looks like the code listed below.(app/views/people/edit.html.erb:)
 
+      ```
       	<h1>Edit Person</h1>
       	<div class="well">
       	  <%= render "form" %>
       	</div>
+      ```
 
     	15.5 Now, let's create our index view. Open up the index view for our people controller at app/views/people/index.html.erb and modify it so that it looks like the code listed below.(app/views/people/index.html.erb:)
 
+      ```
       	<h1>People</h1>
       	<div class="well">
       	  <%= link_to "New Person", new_person_path, class: "btn btn-primary" %>
@@ -222,10 +230,12 @@ Ref :  https://richonrails.com/articles/mongodb-and-rails
       	    <% end %>
       	  </tbody>
       	</table>
-
+      ```
 
 16. Great! Now if we start our Rails server using the rails scommand and navigate to our rails development site at https://localhost:3000 we will find that we have a fully simple, functioning app using MongoDB.
 
+  ```
   	rails s
 
   	https://localhost:3000
+  ```
